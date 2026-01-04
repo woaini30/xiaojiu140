@@ -1,11 +1,8 @@
 import axios from "axios";
 import {ElMessage} from "element-plus";
-import {globals} from "@/main.js";
-
-const serverUrl = globals.$config?.serverUrl || 'http://localhost:8081'
 
 const request = axios.create({
-    baseURL: serverUrl,
+    baseURL: 'http://localhost:8081',
     timeout: 30000})
 request.interceptors.request.use( config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
@@ -31,4 +28,5 @@ request.interceptors.response.use(
         }
         return Promise.reject(error)
     })
+
 export default request
