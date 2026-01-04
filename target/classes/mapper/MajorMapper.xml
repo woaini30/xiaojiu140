@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MajorMapper">
+
+    <select id="selectAll" resultType="com.example.demo.entity.Major">
+select * from major
+<where>
+<if test="name != null">name like concat('%', #{name},'%')</if>
+</where>
+order by id desc
+</select>
+
+
+    <insert id="insert" parameterType="com.example.demo.entity.Major">
+        insert into `major` (name)
+        values (#{name})
+    </insert>
+
+    <update id="updateById" parameterType="com.example.demo.entity.Major">
+        update `major` set name=#{name}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="com.example.demo.entity.Major">
+        delete from `major` where id = #{id}
+    </delete>
+
+</mapper>
